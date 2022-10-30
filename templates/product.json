@@ -1,0 +1,123 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title",
+          "settings": {
+          }
+        },
+        "caption": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.metafields.descriptors.subtitle.value }}",
+            "text_style": "subtitle"
+          }
+        },
+        "price": {
+          "type": "price",
+          "settings": {
+          }
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector",
+          "settings": {
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {
+          }
+        },
+        "88e1f050-6fc0-4cf5-bb4b-c4232f4ec027": {
+          "type": "product-accordion",
+          "settings": {
+            "title": "Product Details",
+            "content": "<p>Sneaker Lab is the only shoe care brand that puts nature first. Our products are made from environmentally friendly ingredients and are 100% biodegradable; making us the only shoe care brand that puts nature first.</p>"
+          }
+        },
+        "2b4fd37e-adf0-45d5-bf56-0eb187213de4": {
+          "type": "product-accordion",
+          "settings": {
+            "title": "Sustainability",
+            "content": "<p>Sneaker Lab is the only shoe care brand that puts nature first. Our products are made fromenvironmentally friendly ingredients and are 100% biodegradable; making us the only shoe carebrand that puts nature first.</p>"
+          }
+        },
+        "d06c1285-52a3-408a-ace6-c31f22f8c76f": {
+          "type": "product-accordion",
+          "settings": {
+            "title": "Delivery & Returns",
+            "content": "<p>Sneaker Lab is the only shoe care brand that puts nature first. Our products are made fromenvironmentally friendly ingredients and are 100% biodegradable; making us the only shoe carebrand that puts nature first.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "caption",
+        "price",
+        "variant_picker",
+        "quantity_selector",
+        "buy_buttons",
+        "description",
+        "88e1f050-6fc0-4cf5-bb4b-c4232f4ec027",
+        "2b4fd37e-adf0-45d5-bf56-0eb187213de4",
+        "d06c1285-52a3-408a-ace6-c31f22f8c76f"
+      ],
+      "settings": {
+        "hide_variants": true
+      }
+    },
+    "product-large-quote": {
+      "type": "product-large-quote",
+      "settings": {
+        "text": "{{ product.metafields.custom.first_large_quote.value }}"
+      }
+    },
+    "main-product-information": {
+      "type": "main-product-information",
+      "settings": {
+        "subtitle": "Product Information",
+        "left-block-title": "ENVIRONMENTALLY FRIENDLY",
+        "left-block-text": "The probacterial solution accelerates the breakdown of dirt and continues to clean for up to 3 days after application. Sneaker Cleaner contains no harmful chemicals or toxins and is GreenTag certified, meaning you can now clean your sneakers in the cleanest way possible.",
+        "right-block-title": "BIODEGRADABLE CLEANING SOLUTION",
+        "right-block-text": "Our products are biodegradable, contain no harsh chemicals, non-hazardous and non-toxic, cruelty free and Vegan.",
+        "bottom-block-quote": "100 PERCENT RECYCLABLE BOTTLES",
+        "bottom-block-text": "Our bottles are 100% recyclable (our Sneaker Wipe towelling is 100% recyclable too) and made up of up to 40% already recycled plastic."
+      }
+    },
+    "similar-products": {
+      "type": "similar-products",
+      "settings": {
+        "products_to_show": 2,
+        "columns_desktop": 4
+      }
+    }
+  },
+  "order": [
+    "main",
+    "product-large-quote",
+    "main-product-information",
+    "similar-products"
+  ]
+}

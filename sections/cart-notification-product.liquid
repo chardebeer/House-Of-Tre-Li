@@ -1,0 +1,39 @@
+{%- if cart != empty -%}
+  {%- for item in cart.items -%}
+    <div id="cart-notification-product-{{ item.key }}" class="cart-item">
+        <div class="flex items-center max-w-[200px]">
+            <!-- product -->
+            {%- if item.image -%}
+                <figure class="bg-light-gray rounded-md py-2 px-4 mr-2">
+                    <img
+                        style="width: 38px; height: 38px;"
+                        src="{{ item.image | image_url: width: 140 }}"
+                        alt="{{ item.image.alt | escape }}"
+                        width="38"
+                        height="38"
+                        loading="lazy"
+                        decoding="async"
+                    >
+                </figure>
+            {%- endif -%}
+
+            <h5 class="leading-[0]">
+                <span class="uppercase text-xs font-medium">
+                    {{ item.product.title | escape }}
+                </span>
+                <span class="block text-xs font-medium text-gray">
+                    {%- unless item.product.has_only_default_variant -%}
+                        {%- for option in item.options_with_values -%}
+                            <div class="product-option">
+                                <dt>{{ option.name }}: </dt>
+                                <dd>{{ option.value }}</dd>
+                            </div>
+                        {%- endfor -%}
+                    {%- endunless -%}
+                </span>
+            </h5>
+        </div>
+        {% render 'cart-modal-price', product: item.product %}
+    </div>
+  {%- endfor -%}
+{%- endif -%}

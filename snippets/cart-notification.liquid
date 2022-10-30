@@ -1,0 +1,63 @@
+{% comment %}
+    Renders cart notification
+
+    Accepts:
+    - color_scheme: {String} sets the color scheme of the notification (optional)
+
+    Usage:
+    {% render 'cart-notification' %}
+{% endcomment %}
+
+<style>
+
+  /* Custom cursor for shop page */
+  .x-cursor {
+    cursor: url('{{ 'close_x.svg' | asset_url }}'), auto;
+    /*cursor: url('/assets/close_x.svg'), auto;*/
+  }
+</style>
+
+<cart-notification>
+  <div id="cart-notification-wrapper" class="cart-notification-wrapper x-cursor">
+    <div
+        id="cart-notification"
+        class="cart-notification focus-inset"
+        aria-modal="true"
+        aria-label="{{ 'general.cart.item_added' | t }}"
+        role="dialog"
+        tabindex="-1"
+    >
+      <div class="relative">
+        <!-- Main modal body -->
+        <!-- modal product styling -->
+        <div id="cart-notification-product" class="cart-notification-product"></div>
+        <a href="{{ routes.cart_url }}" id="cart-notification-button" class="button button--secondary button--full-width"></a>
+
+        <div class="z-40 flex mt-2">
+          <!-- View Cart Button -->
+          <a href="{{ routes.cart_url }}" class="view-cart-button w-2/4 border text-xs border-silver rounded flex justify-center items-center no-underline cursor-pointer hover:bg-gray-100 hover:border-[#000]">
+              View Cart
+          </a>
+          <!-- Checkout button -->
+          <form action="{{ routes.cart_url }}" method="post" id="cart-notification-form" class="bg-eco-green text-[#fff] ml-2 text-xs md:text-sm py-3 w-2/4 rounded hover:bg-forest-green">
+            <button
+              class="w-full h-full"
+              name="checkout"
+            >
+                {{ 'sections.cart.checkout' | t }}
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</cart-notification>
+{% style %}
+  .cart-notification {
+     display: none;
+  }
+{% endstyle %}
+
+<script>
+
+</script>

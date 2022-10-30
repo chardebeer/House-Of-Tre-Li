@@ -1,0 +1,45 @@
+{% comment %}
+    Sneakerlab footer content
+{% endcomment %}
+<footer aria-label="Site Footer" role="contentinfo">
+    <div class="grid grid-cols-12 gap-4 px-4 pt-20 pb-16 md:pb-20 lg:pt-36 lg:px-5 xl:container xl:mx-auto">
+
+        {% render 'newsletter' %}
+
+        <nav class="col-span-6 lg:col-span-3">
+            {% assign footer_menu_1 = linklists.footer-menu-1 %}
+
+            <ul>
+                {% for link in footer_menu_1.links %}
+                    <li class="">
+                        <a class="text-xs font-medium uppercase md:text-sm" href="{{ link.url }}">{{ link.title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </nav>
+
+        <nav class="col-span-6 lg:col-span-3">
+            {% assign footer_menu_2 = linklists.footer-menu-2 %}
+
+            <ul>
+                {% for link in footer_menu_2.links %}
+                    <li class="">
+                        <a class="text-xs font-medium uppercase md:text-sm" href="{{ link.url }}">{{ link.title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </div>
+</footer>
+
+{% render 'colophon' %}
+{% render 'popup-cookies' %}
+{% render 'popup-newsletter' %}
+
+{% schema %}
+{
+  "name": "Footer",
+  "tag": "section",
+  "class": "mt-auto"
+}
+{% endschema %}

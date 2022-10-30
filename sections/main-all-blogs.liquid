@@ -1,0 +1,124 @@
+{{ 'component-article-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'section-main-blog.css' | asset_url | stylesheet_tag }}
+
+{{ 'sneakerlab-blog-card.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+    assign blog_handles = "collaborations,how-tos,stories" | split: ","
+    assign blog_count = 0
+-%}
+
+{% for handle in blog_handles %}
+    {% for article in blogs[handle].articles %}
+        {% if article.published_at %}
+            {% assign blog_count = blog_count | plus: 1 %}
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+
+<section class="mt-12 mb-6 xl:container xl:mx-auto">
+    <!-- Blog Title -->
+    <h2 class="mb-5 text-sm uppercase">[&nbsp;&nbsp;Articles <sup>{{ blog_count }}</sup>&nbsp;&nbsp;]</h2>
+    <header class="relative flex items-center justify-between">
+        <button data-filter-trigger class="relative text-5xl font-medium uppercase transition-all focus:opacity-50 hover:opacity-50" type="button" aria-expanded="false" aria-controls="filter-dropdown">Filter+</button>
+        {% render 'blog-filter' %}
+    </header>
+    <!-- Blog Grid -->
+    <div class="grid gap-4 pt-6 mt-6 mb-6 lg:grid-cols-4 md:grid-cols-2 lg:gap-14">
+        {% for handle in blog_handles %}
+            {% for article in blogs[handle].articles %}
+                <!-- Individual Blog Card -->
+                {% render 'story-card', article: article, show_date: section.settings.show_date %}
+            {%- endfor -%}
+        {% endfor %}
+    </div>
+
+    <a
+        class="inline-block px-12 py-3 text-sm font-medium border rounded md:hidden border-silver"
+        href="{{ blog.url }}"
+    >
+        View all stories
+    </a>
+</section>
+
+<script>
+    const BlogFilter = () => {
+        const trigger = document.querySelector('[data-filter-trigger]');
+        const panel = document.getElementById('filter-dropdown');
+
+        trigger && trigger.addEventListener('click', () => {
+            if (!panel.classList.contains('filter-active')) {
+                trigger.innerHTML = 'Filter-'
+                trigger.setAttribute('aria-expanded', 'true')
+                panel.setAttribute('aria-hidden', 'false')
+                panel.classList.add('filter-active')
+            } else {
+                trigger.innerHTML = 'Filter+'
+                trigger.setAttribute('aria-expanded', 'false')
+                panel.setAttribute('aria-hidden', 'true')
+                panel.classList.remove('filter-active')
+            }
+        })
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                trigger.innerHTML = 'Filter+'
+                trigger.setAttribute('aria-expanded', 'false')
+                panel.setAttribute('aria-hidden', 'true')
+                panel.classList.remove('filter-active')
+            }
+        })
+
+        document.addEventListener('mousedown', (e) => {
+            if (!panel.contains(e.target) && e.target !== trigger) {
+                trigger.innerHTML = 'Filter+'
+                trigger.setAttribute('aria-expanded', 'false')
+                panel.setAttribute('aria-hidden', 'true')
+                panel.classList.remove('filter-active')
+            }
+        })
+    }
+
+    BlogFilter()
+</script>
+
+{% schema %}
+{
+  "name": "t:sections.main-blog.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.main-blog.settings.header.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "default": true,
+      "label": "t:sections.main-blog.settings.show_image.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "default": true,
+      "label": "t:sections.main-blog.settings.show_date.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "default": false,
+      "label": "t:sections.main-blog.settings.show_author.label"
+    },
+    {
+      "type": "paragraph",
+      "content": "t:sections.main-blog.settings.paragraph.content"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    }
+  ]
+}
+{% endschema %}

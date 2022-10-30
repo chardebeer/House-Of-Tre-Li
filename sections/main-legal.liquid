@@ -1,0 +1,55 @@
+<div class="grid md:grid-cols-12 gap-4 xl:container xl:mx-auto mt-20">
+    <div class="col-span-12">
+        <h1 class="font-semibold text-5xl md:text-8xl uppercase">
+            {{ page.title }}
+        </h1>
+        <p class="uppercase text-xs max-w-[253px] md:text-sm mt-4 mb-16 md:my-12 md:max-w-[340px]">
+            [&nbsp;&nbsp;{{ section.settings.subtitle }}&nbsp;&nbsp;]
+        </p>
+    </div>
+    <div class="col-span-12 md:col-span-6 mb-14 md:mb-0">
+        <ul class="horizontal-scroll relative overflow-x-scroll overflow-y-hidden whitespace-nowrap w-[288px] xs:w-[343px] sm:w-[468px]">
+            <li class="inline-block mr-2 md:mr-0 md:block mb-0 md:mb-3">
+                <a class="uppercase text-sm" href="/pages/orders-returns">
+                    Orders &amp; Returns
+                </a>
+            </li>
+            <li class="inline-block mr-2 md:mr-0 md:block mb-0 md:mb-3">
+                <a class="uppercase text-sm" href="/pages/refund-policy/">
+                    Refund Policy
+                </a>
+            </li>
+            <li class="inline-block mr-2 md:mr-0 md:block mb-0 md:mb-3">
+                <a class="uppercase text-sm" href="/pages/terms-of-service/">
+                    Terms of Service
+                </a>
+            </li>
+            <li class="inline-block md:block mb-0 md:mb-3">
+                <a class="uppercase text-sm" href="/pages/privacy-statement/">
+                    Privacy Statement
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-span-12 md:col-span-6">
+        {% render 'accordion' %}
+    </div>
+</div>
+
+{% render 'accordion-js' %}
+
+{% schema %}
+{
+  "name": "Legals page",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "id": "subtitle",
+      "label": "Subtitle",
+      "type": "text",
+      "default": "This page tells you the terms by which you may make use of this website."
+    }
+  ]
+}
+{% endschema %}
